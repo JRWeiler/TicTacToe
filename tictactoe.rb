@@ -77,7 +77,9 @@ class Game
       space = gets.chomp.split(",").map{|s| s.to_i - 1}
       if @board.space_empty?(space[0], space[1])
         @board.place_symbol(space[0], space[1], @current_player.symbol)
-        switch_players
+        unless is_winner?
+          switch_players
+        end
         break
       else
         puts "That space is not empty"
